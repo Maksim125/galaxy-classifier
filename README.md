@@ -1,2 +1,3 @@
-# Galaxy Classificaiton App
+# Galaxy Classification App
+
 
