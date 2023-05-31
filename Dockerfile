@@ -1,20 +1,21 @@
-FROM docker/python:3.10.11-slim as final
+FROM python:3.10.11-slim as final
 
 RUN \
-apt install -qq && \
-apt-get install -y linux-headers-generic libgl1 && \
-ap-getinstall -yq --no-install-recommends libgtk2.0-dev
+    apt install -qq && \
+    apt-get update -qq && \
+    apt-get install -y linux-headers-generic libgl1 && \
+    apt-get install -yq --no-install-recommends libgtk2.0-dev
 
 RUN \
     pip install --upgrade pip && \
     pip install --no-cache-dir --upgrade poetry
 
-WORKDIR /app
+WORKDIR /galaxy-classifier
 
-COPY /app /app
+COPY app /galaxy-classifier/app
 
-COPY poetry.lock /app
-COPY pyproject.toml /app
+COPY poetry.lock /galaxy-classifier
+COPY pyproject.toml /galaxy-classifier
 
 RUN \
     poetry config virtualenvs.create false \
