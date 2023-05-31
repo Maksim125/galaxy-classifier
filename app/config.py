@@ -21,9 +21,6 @@ def setup_logging(app):
     )
     app.logger = logger
 
-def setup_secrets(app):
-    pass
-
 def setup_tools(app):
     #Log requests and responses    
     async def log_request(request, call_next):

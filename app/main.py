@@ -6,7 +6,6 @@ from app.api.routes import healthcheck, classify_galaxy
 
 from app.config import (
     setup_logging,
-    setup_secrets,
     setup_tools,
     OPENAPI_DESCRIPTION,
     OPENAPI_VERSION,
@@ -22,7 +21,6 @@ app = FastAPI(
 )
 
 setup_logging(app)
-setup_secrets(app)
 setup_tools(app)
 
 app.add_middleware(PrometheusMiddleware)
