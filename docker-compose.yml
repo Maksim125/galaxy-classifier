@@ -1,0 +1,28 @@
+version : '1'
+services:
+  api:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - MODEL_NAME=galaxy-classifier
+      - MODEL_HOST=model
+      - MODEL_PORT=8501
+      - MODEL_VERSION=1
+    networks:
+      - serving_network
+
+  model:
+    image: tensorflow/serving
+    ports:
+      - 8500:8500
+      - 8501:8501
+    volumes:
+      - ./notebooks/models/:/models/
+    environment:
+      - MODEL_NAME=galaxy-classifier
+    networks:
+      - serving_network
+
+networks:
+  serving_network:

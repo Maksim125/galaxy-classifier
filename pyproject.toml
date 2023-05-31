@@ -1,16 +1,23 @@
 [tool.poetry]
-name = "Galaxy Classifier App"
+name = "Galaxy Classifier"
 version = "0.1.0"
-description = "A fun web app to clasify images of galaxies"
+description = "An API to classify images of galaxies"
 authors = ["Max Yarmakovich <maxyarmakovich@gmail.com>"]
 
 [tool.poetry.dependencies]
-python="^3.11"
+python=">=3.8,<3.11"
 fastapi = "^0.95.2"
 toml = "^0.10.2"
 uvicorn = "^0.22.0"
 starlette-prometheus = "^0.9.0"
 loguru = "^0.7.0"
+urllib3 = "^1.26.15"
+requests=  "^2.30.0"
+six="^1.16.0"
+python-multipart = "^0.0.6"
+httpx = "^0.24.1"
+pillow = "^9.5.0"
+numpy = "^1.24.3"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.3.1"
@@ -18,9 +25,20 @@ pytest-cov = "^4.0.0"
 
 
 [tool.poetry.group.eda.dependencies]
+tensorflow-io-gcs-filesystem = "0.31.0"
+tensorflow = "^2.12.0"
+tensorflow-intel = "^2.12.0"
 pandas = "^2.0.1"
-numpy = "^1.24.3"
 matplotlib = "^3.7.1"
-keras = "^2.12.0"
 scikit-learn = "^1.2.2"
+keras = "^2.12.0"
+tensorflow-hub = "^0.13.0"
+scikit-optimize = "^0.9.0"
 
+[build-system]
+requires = ["setuptools", "cython", "pip", "requests"]
+pythonpath = "app"
+
+[tool.pytest.ini_options]
+addopts = "--verbose --cov=app"
+testpaths = "tests"
